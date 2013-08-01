@@ -11,7 +11,7 @@
 #  class { 'awscli': }
 #
 class awscli {
-  require python-pip
+  require python_pip
 
   package { 's3cmd':
     ensure => present,
