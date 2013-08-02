@@ -1,38 +1,34 @@
-# Class: awscli
+# == Class: awstools
 #
-# This class installs awscli
+# Install AWS tools including: s3cmd, awscli, boto.
+# Optionally the package will also create config files for s3cmd and boto in user's home directory 
 #
-# Actions:
-#   - Install awscli and boto using pip
-#   - Install s3cmd tool
-#   - Install template cred files
+# === Parameters
 #
-# Sample Usage:
-#  class { 'awscli': }
+# [user_name]
+#   (optional) User to add AWS tools dotfiles for
 #
-class awscli {
+# === Examples
+#
+#  class { 'awstools': }
+#
+class awstools(
+  $user_name = ''
+) {
   require python_pip
+
+  validate_string($user_name)
 
   package { 's3cmd':
     ensure => present,
-  }
-
-  file { '/home/vagrant/.s3cfg':
-    content => template('awscli/s3cfg'),
-    mode => '700',
-    owner => 'vagrant',
-    group => 'vagrant',
   }
 
   package { ['awscli','boto']:
     ensure => present,
     provider => 'pip'
   }
-  
-  file { '/home/vagrant/.boto':
-    content => template('awscli/boto'),
-    mode => '700',
-    owner => 'vagrant',
-    group => 'vagrant',
-  }  
+
+  if ! empty($user_name) {
+    awscli::config_files { $user_name: }
+  }
 }
