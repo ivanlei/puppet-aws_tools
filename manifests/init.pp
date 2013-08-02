@@ -10,9 +10,9 @@
 #
 # === Examples
 #
-#  class { 'awstools': }
+#  class { 'aws_tools': }
 #
-class awstools(
+class aws_tools(
   $user_name = ''
 ) {
   require python_pip
@@ -29,6 +29,6 @@ class awstools(
   }
 
   if ! empty($user_name) {
-    awscli::config_files { $user_name: }
+    aws_tools::config_files { $user_name: }
   }
 }

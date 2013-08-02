@@ -1,0 +1,1 @@
+class { 'aws_tools': }

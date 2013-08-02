@@ -1,0 +1,1 @@
+aws_tools::config_files { 'vagrant': }
