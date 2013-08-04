@@ -1,7 +1,7 @@
 # == Class: awstools
 #
 # Install AWS tools including: s3cmd, awscli, boto.
-# Optionally the package will also create config files for s3cmd and boto in user's home directory 
+# Optionally the package will also create config files for s3cmd and boto in user's home directory
 #
 # === Parameters
 #
@@ -24,7 +24,7 @@ class aws_tools(
   }
 
   package { ['awscli','boto']:
-    ensure => present,
+    ensure   => present,
     provider => 'pip'
   }
 

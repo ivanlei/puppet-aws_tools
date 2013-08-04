@@ -11,7 +11,7 @@
 #
 # === Examples
 #
-#  class { 'aws_tools::config_files': 
+#  class { 'aws_tools::config_files':
 #    user_name => 'vagrant'
 #  }
 #
@@ -22,15 +22,15 @@ define aws_tools::config_files(
 
   file { "/home/${user_name}/.s3cfg":
     content => template('aws_tools/s3cfg'),
-    mode => '700',
-    owner => $user_name,
-    group => $user_name,
+    mode    => '0700',
+    owner   => $user_name,
+    group   => $user_name,
   }
 
   file { "/home/${user_name}/.boto":
     content => template('aws_tools/boto'),
-    mode => '700',
-    owner => $user_name,
-    group => $user_name,
-  }  
+    mode    => '0700',
+    owner   => $user_name,
+    group   => $user_name,
+  }
 }
