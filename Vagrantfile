@@ -83,7 +83,7 @@ Vagrant.configure('2') do |global_config|
       # Puppet  #
       ###########
       config.vm.provision :puppet do |puppet|
-        puppet.module_path    = '..'
+        puppet.module_path    = './modules'
         puppet.manifests_path = './tests'
         puppet.manifest_file  = "#{vm_name}.pp"
         if debug
